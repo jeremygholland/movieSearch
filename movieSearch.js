@@ -37,11 +37,17 @@ if (Meteor.isClient) {
      for (b = 0; b<actor1.length; b++){
      $.getJSON("http://api.themoviedb.org/3/movie/"+actor1[b]+"/credits?api_key=bc8d6eb8376311f84080885ca58a2fd8").then(function (data){
         for(e = 0; e<data.cast.length; e++){
-          if(!data.cast[e].department){
-          var me = data.cast[e].id;
-          }
+          var me = data.cast[e].name;
           actor2.push(me);
-          console.log(actor2);
+
+
+          var uniqueActors = [];
+          $.each(actor2, function(i, el){
+            if($.inArray(el, uniqueActors) === -1){
+              uniqueActors.push(el);
+            }
+          })
+          console.log(uniqueActors);
         }
         
       })
