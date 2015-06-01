@@ -1,0 +1,23 @@
+<head>
+  <title>movieSearch</title>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+</head>
+
+<body>
+	<header>
+  <h1>Let's try this</h1>
+  <form class="firstOne">
+  <input type="text" name = "text">
+  <label>This is our first one</label>
+  </form>
+  </header>
+ <ul>
+ 	{{#each firsts}}
+ 		{{> first}}
+	{{/each}}
+	</ul>
+</body>
+
+<template name="first">
+  <p>{{text}}</p>
+</template>
