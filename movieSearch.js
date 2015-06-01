@@ -21,6 +21,7 @@ if (Meteor.isClient) {
   Template.body.events({
     'submit .firstOne': function () {
       var actor1= [];
+      var actor2 = [];
       // increment the counter when button is clicked
       var text = event.target.text.value;
       console.log(text);
@@ -33,6 +34,18 @@ if (Meteor.isClient) {
 
      }
      console.log(actor1);
+     for (b = 0; b<actor1.length; b++){
+     $.getJSON("http://api.themoviedb.org/3/movie/"+actor1[b]+"/credits?api_key=bc8d6eb8376311f84080885ca58a2fd8").then(function (data){
+        for(e = 0; e<data.cast.length; e++){
+          if(!data.cast[e].department){
+          var me = data.cast[e].id;
+          }
+          actor2.push(me);
+          console.log(actor2);
+        }
+        
+      })
+     }
      })
   });
      event.target.text.value = '';
